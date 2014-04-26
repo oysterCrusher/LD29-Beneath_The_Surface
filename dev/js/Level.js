@@ -19,22 +19,24 @@ ld.Level = function() {
         }
 
         if (view === 'below') {
-            if (ld.input.wasPressed('left')) {
+            if (ld.input.wasPressed(ld.Keycodes.A)) {
                 if (ld.player.move(-1, 0)) {
                     ld.persons.advance();
                 }
-            } else if (ld.input.wasPressed('right')) {
+            } else if (ld.input.wasPressed(ld.Keycodes.D)) {
                 if (ld.player.move(1, 0)) {
                     ld.persons.advance();
                 }
-            } else if (ld.input.wasPressed('up')) {
+            } else if (ld.input.wasPressed(ld.Keycodes.W)) {
                 if (ld.player.move(0, -1)) {
                     ld.persons.advance();
                 }
-            } else if (ld.input.wasPressed('down')) {
+            } else if (ld.input.wasPressed(ld.Keycodes.S)) {
                 if (ld.player.move(0, 1)) {
                     ld.persons.advance();
                 }
+            } else if (ld.input.wasPressed(ld.Keycodes.E)) {
+                ld.persons.advance();
             }
         }
 

@@ -1,12 +1,6 @@
 ld.Input = function() {
 
-    var wasPressed = {
-            left: false,
-            right: false,
-            up: false,
-            down: false,
-            space: false
-        },
+    var wasPressed = {},
         mouse = {
             wasClicked: false,
             x: 0,
@@ -18,9 +12,12 @@ ld.Input = function() {
         bindMouse();
     };
 
-    this.wasPressed = function(keyName) {
-        var r = wasPressed[keyName];
-        wasPressed[keyName] = false;
+    this.wasPressed = function(keyCode) {
+        var r = false;
+        if (wasPressed.hasOwnProperty(keyCode)) {
+            r = wasPressed[keyCode];
+            wasPressed[keyCode] = false;
+        }
         return r;
     };
 
@@ -35,13 +32,7 @@ ld.Input = function() {
     };
 
     this.clear = function() {
-        wasPressed = {
-            left: false,
-            right: false,
-            up: false,
-            down: false,
-            space: false
-        };
+        wasPressed = {};
         mouse = {
             wasClicked: false,
             x: 0,
@@ -54,23 +45,7 @@ ld.Input = function() {
     }
 
     function onKeyDown(evt) {
-        switch (evt.keyCode) {
-            case 37: // Left
-                wasPressed.left = true;
-                break;
-            case 39:
-                wasPressed.right = true;
-                break;
-            case 38:
-                wasPressed.up = true;
-                break;
-            case 40:
-                wasPressed.down = true;
-                break;
-            case 32:
-                wasPressed.space = true;
-                break;
-        }
+        wasPressed[evt.keyCode] = true;
     }
 
     function bindMouse() {
