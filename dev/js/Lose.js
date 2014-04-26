@@ -11,6 +11,8 @@ ld.Lose = function() {
     this.update = function() {
         if (ld.input.getMouse().wasClicked) {
             ld.state.changeState('mainMenu');
+        } else if (ld.input.wasPressed('space')) {
+            ld.state.changeState('mainMenu');
         }
     };
 

@@ -12,6 +12,9 @@ ld.MainMenu = function() {
         if (ld.input.getMouse().wasClicked) {
             ld.level.loadLevel(0);
             ld.state.changeState('game');
+        } else if (ld.input.wasPressed('space')) {
+            ld.level.loadLevel(0);
+            ld.state.changeState('game');
         }
     };
 

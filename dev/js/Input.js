@@ -74,7 +74,7 @@ ld.Input = function() {
     }
 
     function bindMouse() {
-        window.addEventListener('mousedown', onMouseDown, false);
+        ld.canvas.addEventListener('mousedown', onMouseDown, false);
     }
 
     function onMouseDown(evt) {
