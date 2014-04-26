@@ -54,7 +54,7 @@ ld.Loader = function() {
     function onSpriteLoad() {
         nSpritesLoaded++;
         if (nSpritesLoaded === nSpritesToLoad) {
-            ld.state.changeState('game');
+            ld.state.changeState('mainMenu');
         }
     }
 

@@ -25,8 +25,8 @@ ld.Persons = function() {
         }
     };
 
-
 };
+
 
 ld.Person = function(path) {
 
