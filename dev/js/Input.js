@@ -1,20 +1,35 @@
 ld.Input = function() {
 
     var wasPressed = {
-        left: false,
-        right: false,
-        up: false,
-        down: false
-    };
+            left: false,
+            right: false,
+            up: false,
+            down: false
+        },
+        mouse = {
+            wasClicked: false,
+            x: 0,
+            y: 0
+        };
 
     this.start = function() {
-        console.log('binding keyboard');
         bindKeyboard();
+        bindMouse();
     };
 
     this.wasPressed = function(keyName) {
         var r = wasPressed[keyName];
         wasPressed[keyName] = false;
+        return r;
+    };
+
+    this.getMouse = function() {
+        var r = {
+            wasClicked: mouse.wasClicked,
+            x: mouse.x,
+            y: mouse.y
+        };
+        mouse.wasClicked = false;
         return r;
     };
 
@@ -24,7 +39,12 @@ ld.Input = function() {
             right: false,
             up: false,
             down: false
-        }
+        };
+        mouse = {
+            wasClicked: false,
+            x: 0,
+            y: 0
+        };
     };
 
     function bindKeyboard() {
@@ -46,6 +66,16 @@ ld.Input = function() {
                 wasPressed.down = true;
                 break;
         }
+    }
+
+    function bindMouse() {
+        window.addEventListener('mousedown', onMouseDown, false);
+    }
+
+    function onMouseDown(evt) {
+        mouse.wasClicked = true;
+        mouse.x = evt.pageX - evt.target.getBoundingClientRect().left;
+        mouse.y = evt.pageY - evt.target.getBoundingClientRect().top;
     }
 
 };

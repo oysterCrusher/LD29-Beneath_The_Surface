@@ -1,4 +1,4 @@
-ld.MainMenu = function() {
+ld.Win = function() {
 
     this.enter = function() {
 
@@ -10,15 +10,14 @@ ld.MainMenu = function() {
 
     this.update = function() {
         if (ld.input.getMouse().wasClicked) {
-            ld.level.loadLevel(0);
-            ld.state.changeState('game');
+            ld.state.changeState('mainMenu');
         }
     };
 
     this.render = function() {
         ld.ctx.fillStyle = '#102030';
         ld.ctx.fillRect(0,0,ld.canvas.width,ld.canvas.height);
-        ld.ctx.drawImage(ld.cache.sprites['menu_title'], 0, 0, 200, 100, 540, 50, 200, 100);
+        ld.ctx.drawImage(ld.cache.sprites['win'], 0, 0, 200, 100, 540, 50, 200, 100);
     };
 
 };

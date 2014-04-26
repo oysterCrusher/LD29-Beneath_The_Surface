@@ -1,7 +1,6 @@
 ld.Game = function() {
 
     this.enter = function() {
-        console.log('entering game state');
         ld.level.loadLevel(0);
     };
 

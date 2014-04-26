@@ -3,6 +3,11 @@ ld.Player = function() {
     var x = 3,
         y = 10;
 
+    this.setLevel = function(n) {
+        x = ld.maps[n].persons[0][0][0];
+        y = ld.maps[n].persons[0][0][1];
+    };
+
     this.move = function(dx, dy) {
 
         var xp = x + dx,

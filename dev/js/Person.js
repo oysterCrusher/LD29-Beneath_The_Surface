@@ -19,6 +19,16 @@ ld.Persons = function() {
         }
     };
 
+    this.hasFinished = function() {
+        var r = true;
+        for (var i = 0; i < persons.length; i++) {
+            if (!persons[i].hasFinished) {
+                r = false;
+            }
+        }
+        return r;
+    };
+
     this.render = function() {
         for (var i = 0; i < persons.length; i++) {
             persons[i].render();
@@ -34,10 +44,17 @@ ld.Person = function(path) {
         subprogress = 0,
         substeps = 3;
 
-    console.log(path);
-    console.log(path[Math.floor(progress)][0]);
+    this.hasFinished = false;
 
     this.advance = function() {
+
+        if (progress >= path.length - 2) {
+            if (!this.hasFinished) {
+                this.hasFinished = true;
+            }
+            return;
+        }
+
         subprogress += 1;
         if (subprogress >= substeps) {
             progress++;
@@ -48,17 +65,11 @@ ld.Person = function(path) {
         var cTileX =  path[progress][0] + Math.round(subprogress / substeps) * (path[progress+1][0] - path[progress][0]),
             cTileY =  path[progress][1] + Math.round(subprogress / substeps) * (path[progress+1][1] - path[progress][1]);
         if (ld.cracks.isCrackAt(cTileX, cTileY)) {
-            console.log('stepping on a crack');
-            if (ld.blocks.isBlockAt(cTileX, cTileY)) {
-                console.log('saved by the block');
-            } else {
-                console.log('fell through the floor');
+            if (!ld.blocks.isBlockAt(cTileX, cTileY)) {
+                ld.state.changeState('lose');
             }
         }
 
-        if (progress >= path.length - 2) {
-            ld.level.completed();
-        }
     };
 
     this.render = function() {

@@ -6,15 +6,11 @@ ld.Level = function() {
     this.loadLevel = function(n) {
         levelNumber = n;
         ld.map.setLevel(n);
+        ld.player.setLevel(n);
         ld.blocks.setLevel(n);
         ld.persons.setLevel(n);
         ld.cracks.setLevel(n);
         isComplete = false;
-    };
-
-    this.completed = function() {
-        console.log('complete');
-        isComplete = true;
     };
 
     this.update = function() {
@@ -38,6 +34,10 @@ ld.Level = function() {
             if (ld.player.move(0, 1)) {
                 ld.persons.advance();
             }
+        }
+
+        if (ld.persons.hasFinished()) {
+            ld.state.changeState('win');
         }
     };
 
