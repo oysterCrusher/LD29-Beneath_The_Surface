@@ -3,7 +3,7 @@ var ld = ld || {};
 window.onload = function() {
 
     ld.canvas = document.getElementById('gameCanvas');
-    ld.canvas.width = 1080;
+    ld.canvas.width = 1280;
     ld.canvas.height = 720;
     ld.ctx = ld.canvas.getContext('2d');
     ld.container = document.getElementById('gameContainer');
@@ -22,5 +22,8 @@ window.onload = function() {
 
     ld.ctx.fillStyle = '#000000';
     ld.ctx.fillRect(0,0,ld.canvas.width,ld.canvas.height);
+
+    ld.state = new ld.State();
+    ld.state.start();
 
 };
