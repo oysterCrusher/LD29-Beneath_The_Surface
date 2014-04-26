@@ -6,7 +6,10 @@ ld.Level = function() {
         levelNumber = n;
         ld.map.setLevel(n);
         ld.blocks.setLevel(n);
+    };
 
+    this.update = function() {
+        ld.player.update();
     };
 
     this.render = function() {

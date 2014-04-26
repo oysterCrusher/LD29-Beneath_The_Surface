@@ -32,6 +32,7 @@ ld.Loader = function() {
         ld.player = new ld.Player();
         ld.blocks = new ld.Blocks();
         ld.level = new ld.Level();
+        ld.input = new ld.Input();
     }
 
     function loadSprites() {

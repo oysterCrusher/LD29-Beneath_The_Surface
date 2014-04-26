@@ -17,12 +17,15 @@ ld.State = function() {
         currentState = states.loader;
         currentState.enter();
 
+        ld.input.start();
+
         this.rafUpdate(0);
 
     };
 
     this.changeState = function(newState) {
         currentState.exit();
+        ld.input.clear();
         currentState = states[newState];
         currentState.enter();
     };

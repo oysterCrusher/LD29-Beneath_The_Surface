@@ -10,7 +10,7 @@ ld.Game = function() {
     };
 
     this.update = function(dt) {
-
+        ld.level.update();
     };
 
     this.render = function() {
