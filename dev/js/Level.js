@@ -8,6 +8,7 @@ ld.Level = function() {
         ld.map.setLevel(n);
         ld.blocks.setLevel(n);
         ld.persons.setLevel(n);
+        ld.cracks.setLevel(n);
         isComplete = false;
     };
 
@@ -42,6 +43,7 @@ ld.Level = function() {
 
     this.render = function() {
         ld.map.render();
+        ld.cracks.render();
         ld.blocks.render();
         ld.player.render();
         ld.persons.render();

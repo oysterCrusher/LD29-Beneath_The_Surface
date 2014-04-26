@@ -31,6 +31,7 @@ ld.Loader = function() {
         ld.persons = new ld.Persons();
         ld.player = new ld.Player();
         ld.blocks = new ld.Blocks();
+        ld.cracks = new ld.Cracks();
         ld.level = new ld.Level();
         ld.input = new ld.Input();
     }
