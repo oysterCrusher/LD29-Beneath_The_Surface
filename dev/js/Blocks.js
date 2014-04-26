@@ -1,6 +1,6 @@
 ld.Blocks = function() {
 
-    var blocks =[];
+    var blocks = [];
 
     this.setLevel = function(n) {
         blocks = [];

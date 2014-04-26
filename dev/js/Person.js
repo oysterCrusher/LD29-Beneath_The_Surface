@@ -62,8 +62,8 @@ ld.Person = function(path) {
         }
 
         // Check to see if we fall through a crack
-        var cTileX =  path[progress][0] + Math.round(subprogress / substeps) * (path[progress+1][0] - path[progress][0]),
-            cTileY =  path[progress][1] + Math.round(subprogress / substeps) * (path[progress+1][1] - path[progress][1]);
+        var cTileX = path[progress][0] + Math.round(subprogress / substeps) * (path[progress + 1][0] - path[progress][0]),
+            cTileY = path[progress][1] + Math.round(subprogress / substeps) * (path[progress + 1][1] - path[progress][1]);
         if (ld.cracks.isCrackAt(cTileX, cTileY)) {
             if (!ld.blocks.isBlockAt(cTileX, cTileY)) {
                 ld.state.changeState('lose');
@@ -73,8 +73,8 @@ ld.Person = function(path) {
     };
 
     this.render = function(view) {
-        var tx = path[progress][0] + (subprogress / substeps) * (path[progress+1][0] - path[progress][0]),
-            ty = path[progress][1] + (subprogress / substeps) * (path[progress+1][1] - path[progress][1]);
+        var tx = path[progress][0] + (subprogress / substeps) * (path[progress + 1][0] - path[progress][0]),
+            ty = path[progress][1] + (subprogress / substeps) * (path[progress + 1][1] - path[progress][1]);
 
         if (view === 'below') {
             ld.ctx.globalAlpha = 0.2;
