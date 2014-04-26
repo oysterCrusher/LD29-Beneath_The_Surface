@@ -29,6 +29,9 @@ ld.Loader = function() {
     function setup() {
         ld.map = new ld.Map();
         ld.person = new ld.Person();
+        ld.player = new ld.Player();
+        ld.blocks = new ld.Blocks();
+        ld.level = new ld.Level();
     }
 
     function loadSprites() {

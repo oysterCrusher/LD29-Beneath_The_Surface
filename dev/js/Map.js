@@ -2,8 +2,13 @@ ld.Map = function() {
 
     var tilesAbove = ld.maps[0].above,
         tilesBelow = ld.maps[0].below,
-        aboveIsVisible = true,
-        belowIsVisible = false;
+        aboveIsVisible = false,
+        belowIsVisible = true;
+
+    this.setLevel = function(n) {
+        tilesAbove = ld.maps[n].above;
+        tilesBelow = ld.maps[n].below;
+    };
 
     this.render = function() {
 
