@@ -1,6 +1,6 @@
 import json
 
-map0 = {'name': 'test01', 'players': [[[3,10], [3,9], [3,8], [3,7], [3,6], [3,5], [3,4], [3,3], [4,3], [5,3], [6,3], [7,3], [8,3], [8,4], [8,5], [8,6], [8,7], [9,7], [10,7], [11,7], [12,7], [13,7], [14,7], [15,7], [16,7], [16,6], [16,5], [16,4], [16,3], [16,2], [16,1], [16,0], [16,-1]]] }
+map0 = {'name': 'test00', 'players': [[[3,10], [3,9], [3,8], [3,7], [3,6], [3,5], [3,4], [3,3], [4,3], [5,3], [6,3], [7,3], [8,3], [9,3], [9,4], [9,5], [10,5], [11,5], [12,5], [13,5], [14,5], [15,5], [16,5], [16,4], [16,3], [16,2], [16,1], [16,0], [16,-1]]] }
 
 maps = [map0]
 
@@ -28,13 +28,13 @@ for file in maps:
 		for x in range(0, w):
 			ta = data['layers'][1]['data'][x + y * w]
 			tb = data['layers'][0]['data'][x + y * w]
-			if (tb == 8):  # Block
+			if (tb == 15):  # Block
 				blocks_array.append([x,y])
-				tb = 5
-			if (ta == 3):  # Crack
+				tb = 8
+			if (ta == 7):  # Crack
 				cracks_array.append([x,y])
 				ta = 1
-				tb = 5
+				tb = 8
 			above_row_data.append(ta)
 			below_row_data.append(tb)
 		above_map_array.append(above_row_data)

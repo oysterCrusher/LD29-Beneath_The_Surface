@@ -15,7 +15,7 @@ ld.Map = function() {
         if (x < 0 || x > tilesBelow[y].length - 1) {
             return false;
         }
-        return tilesBelow[y][x] === 5;
+        return (tilesBelow[y][x] === 8) || (tilesBelow[y][x] === 9) || (tilesBelow[y][x] === 10);
     };
 
     this.render = function(view) {
