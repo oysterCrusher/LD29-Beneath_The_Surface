@@ -7,6 +7,8 @@ ld.Loader = function() {
 
     this.enter = function() {
 
+        setup();
+
         loadSprites();
 
     };
@@ -23,6 +25,10 @@ ld.Loader = function() {
         ld.ctx.fillStyle = '#100000';
         ld.ctx.fillRect(0,0,ld.canvas.width,ld.canvas.height);
     };
+
+    function setup() {
+        ld.map = new ld.Map();
+    }
 
     function loadSprites() {
         ld.cache = {
@@ -42,7 +48,7 @@ ld.Loader = function() {
     function onSpriteLoad() {
         nSpritesLoaded++;
         if (nSpritesLoaded === nSpritesToLoad) {
-            console.log('time to lock and load');
+            ld.state.changeState('game');
         }
     }
 

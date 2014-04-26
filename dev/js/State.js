@@ -12,6 +12,7 @@ ld.State = function() {
 
         // Create all the states
         states.loader = new ld.Loader();
+        states.game = new ld.Game();
 
         currentState = states.loader;
         currentState.enter();
