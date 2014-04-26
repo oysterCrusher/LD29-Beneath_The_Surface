@@ -79,7 +79,7 @@ ld.Person = function(path) {
         if (view === 'below') {
             ld.ctx.globalAlpha = 0.2;
         }
-        ld.ctx.drawImage(ld.cache.sprites['person'], 60, 0, 60, 60, tx * 60 + 40, ty * 60 + 30, 60, 60);
+        ld.ctx.drawImage(ld.cache.sprites['person'], 0, 0, 60, 60, tx * 60 + 40, ty * 60 + 30, 60, 60);
 
         ld.ctx.globalAlpha = 1.0;
     }
