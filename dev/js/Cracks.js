@@ -13,6 +13,16 @@ ld.Cracks = function() {
         cracks.push(new ld.Crack(x, y));
     }
 
+    this.isCrackAt = function(x, y) {
+        var r = false;
+        for (var i = 0; i < cracks.length; i++) {
+            if (cracks[i].x === x && cracks[i].y === y) {
+                r = true;
+            }
+        }
+        return r;
+    };
+
     this.render = function() {
         for (var i = 0; i < cracks.length; i++) {
             cracks[i].render();

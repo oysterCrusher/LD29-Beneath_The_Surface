@@ -17,9 +17,10 @@ ld.Blocks = function() {
         var r = false;
         for (var i = 0; i < blocks.length; i++) {
             if (blocks[i].x === x && blocks[i].y === y) {
-                return true;
+                r = true;
             }
         }
+        return r;
     };
 
     this.moveBlock = function(x, y, dx, dy) {
