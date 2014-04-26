@@ -1,6 +1,8 @@
 import json
 
-map_json_files = ['test01']
+map0 = {'name': 'test01', 'players': [[[3,10], [3,9], [3,8], [3,7], [3,6], [3,5], [3,4], [3,3], [4,3], [5,3], [6,3], [7,3], [8,3], [8,4], [8,5], [8,6], [8,7], [9,7], [10,7], [11,7], [12,7], [13,7], [14,7], [15,7], [16,7], [16,6], [16,5], [16,4], [16,3], [16,2], [16,1], [16,0], [16,-1]]] }
+
+maps = [map0]
 
 output_file = '../js/maps.js'
 
@@ -10,8 +12,8 @@ js_tail = '];'
 outfile = open(output_file, 'w')
 outfile.write(js_head)
 
-for file in map_json_files:
-	file_data = open(file + '.json', 'r')
+for file in maps:
+	file_data = open(file['name'] + '.json', 'r')
 	data = json.load(file_data)
 	file_data.close()
 	w = data['layers'][1]['width']
@@ -32,7 +34,7 @@ for file in map_json_files:
 		above_map_array.append(above_row_data)
 		below_map_array.append(below_row_data)
 		
-outfile.write('{\nabove:\n' + str(above_map_array) + ',\nbelow:\n' + str(below_map_array) + ',\nblocks:\n' + str(blocks_array) + '\n}\n')
+	outfile.write('{\nabove:\n' + str(above_map_array) + ',\nbelow:\n' + str(below_map_array) + ',\nblocks:\n' + str(blocks_array) + ',\npersons:\n' + str(file['players']) + '\n}\n')
 
 outfile.write(js_tail)
 outfile.close()

@@ -28,7 +28,7 @@ ld.Loader = function() {
 
     function setup() {
         ld.map = new ld.Map();
-        ld.person = new ld.Person();
+        ld.persons = new ld.Persons();
         ld.player = new ld.Player();
         ld.blocks = new ld.Blocks();
         ld.level = new ld.Level();
