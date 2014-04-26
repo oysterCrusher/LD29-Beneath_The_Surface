@@ -19,6 +19,12 @@ ld.Persons = function() {
         }
     };
 
+    this.retreat = function() {
+        for (var i = 0; i < persons.length; i++) {
+            persons[i].retreat();
+        }
+    };
+
     this.hasFinished = function() {
         var r = true;
         for (var i = 0; i < persons.length; i++) {
@@ -42,7 +48,10 @@ ld.Person = function(path) {
 
     var progress = 0,
         subprogress = 0,
-        substeps = 3;
+        substeps = 3,
+        history = [
+            [0, 0]
+        ];
 
     this.hasFinished = false;
 
@@ -61,6 +70,8 @@ ld.Person = function(path) {
             subprogress -= substeps;
         }
 
+        history.push([progress, subprogress]);
+
         // Check to see if we fall through a crack
         var cTileX = path[progress][0] + Math.round(subprogress / substeps) * (path[progress + 1][0] - path[progress][0]),
             cTileY = path[progress][1] + Math.round(subprogress / substeps) * (path[progress + 1][1] - path[progress][1]);
@@ -70,6 +81,12 @@ ld.Person = function(path) {
             }
         }
 
+    };
+
+    this.retreat = function() {
+        progress = history[history.length - 2][0];
+        subprogress = history[history.length - 2][1];
+        history.pop();
     };
 
     this.render = function(view) {

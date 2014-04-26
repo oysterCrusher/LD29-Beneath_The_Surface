@@ -33,6 +33,18 @@ ld.Blocks = function() {
         }
     };
 
+    this.advance = function() {
+        for (var i = 0; i < blocks.length; i++) {
+            blocks[i].advance();
+        }
+    };
+
+    this.retreat = function() {
+        for (var i = 0; i < blocks.length; i++) {
+            blocks[i].retreat();
+        }
+    };
+
     this.render = function(v) {
         for (var i = 0; i < blocks.length; i++) {
             blocks[i].render(v);
@@ -43,9 +55,23 @@ ld.Blocks = function() {
 
 ld.Block = function(x, y) {
 
+    var history = [
+        [x, y]
+    ];
+
     this.x = x;
 
     this.y = y;
+
+    this.advance = function() {
+        history.push([this.x, this.y]);
+    };
+
+    this.retreat = function() {
+        this.x = history[history.length - 2][0];
+        this.y = history[history.length - 2][1];
+        history.pop();
+    };
 
     this.render = function(view) {
         if (view === 'below') {

@@ -1,7 +1,8 @@
 ld.Level = function() {
 
     var levelNumber = 0,
-        view = 'below';
+        view = 'below',
+        nSteps = 0;
 
     this.loadLevel = function(n) {
         levelNumber = n;
@@ -21,22 +22,24 @@ ld.Level = function() {
         if (view === 'below') {
             if (ld.input.wasPressed(ld.Keycodes.A)) {
                 if (ld.player.move(-1, 0)) {
-                    ld.persons.advance();
+                    advance();
                 }
             } else if (ld.input.wasPressed(ld.Keycodes.D)) {
                 if (ld.player.move(1, 0)) {
-                    ld.persons.advance();
+                    advance();
                 }
             } else if (ld.input.wasPressed(ld.Keycodes.W)) {
                 if (ld.player.move(0, -1)) {
-                    ld.persons.advance();
+                    advance();
                 }
             } else if (ld.input.wasPressed(ld.Keycodes.S)) {
                 if (ld.player.move(0, 1)) {
-                    ld.persons.advance();
+                    advance();
                 }
             } else if (ld.input.wasPressed(ld.Keycodes.E)) {
-                ld.persons.advance();
+                advance();
+            } else if (ld.input.wasPressed(ld.Keycodes.Q)) {
+                retreat();
             }
         }
 
@@ -44,6 +47,22 @@ ld.Level = function() {
             ld.state.changeState('win');
         }
     };
+
+    function advance() {
+        ld.player.advance();
+        ld.blocks.advance();
+        ld.persons.advance();
+        nSteps++;
+    }
+
+    function retreat() {
+        if (nSteps > 0) {
+            ld.persons.retreat();
+            ld.blocks.retreat();
+            ld.player.retreat();
+            nSteps--;
+        }
+    }
 
     function toggleView() {
         view = view === 'above' ? 'below' : 'above';

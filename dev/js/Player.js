@@ -1,11 +1,25 @@
 ld.Player = function() {
 
     var x = 3,
-        y = 10;
+        y = 10,
+        history = [];
 
     this.setLevel = function(n) {
         x = ld.maps[n].persons[0][0][0];
         y = ld.maps[n].persons[0][0][1];
+        history = [
+            [x, y]
+        ];
+    };
+
+    this.advance = function() {
+        history.push([x, y]);
+    };
+
+    this.retreat = function() {
+        x = history[history.length - 2][0];
+        y = history[history.length - 2][1];
+        history.pop();
     };
 
     this.move = function(dx, dy) {
