@@ -14,6 +14,7 @@ ld.Game = function() {
 
     this.render = function() {
         ld.map.render();
+        ld.person.render();
     };
 
 };

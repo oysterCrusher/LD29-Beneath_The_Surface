@@ -28,6 +28,7 @@ ld.Loader = function() {
 
     function setup() {
         ld.map = new ld.Map();
+        ld.person = new ld.Person();
     }
 
     function loadSprites() {
