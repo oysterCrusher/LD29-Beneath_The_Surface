@@ -9,7 +9,23 @@ ld.Level = function() {
     };
 
     this.update = function() {
-        ld.player.update();
+        if (ld.input.wasPressed('left')) {
+            if (ld.player.moveLeft()) {
+                console.log('left')
+            }
+        } else if (ld.input.wasPressed('right')) {
+            if (ld.player.moveRight()) {
+                console.log('right')
+            }
+        } else if (ld.input.wasPressed('up')) {
+            if (ld.player.moveUp()) {
+                console.log('up')
+            }
+        } else if (ld.input.wasPressed('down')) {
+            if (ld.player.moveDown()) {
+                console.log('down')
+            }
+        }
     };
 
     this.render = function() {

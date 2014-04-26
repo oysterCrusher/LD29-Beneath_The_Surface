@@ -32,7 +32,6 @@ ld.Input = function() {
     }
 
     function onKeyDown(evt) {
-        console.log(evt.keyCode);
         switch (evt.keyCode) {
             case 37: // Left
                 wasPressed.left = true;

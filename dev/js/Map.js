@@ -10,6 +10,16 @@ ld.Map = function() {
         tilesBelow = ld.maps[n].below;
     };
 
+    this.canMoveTo = function(x, y) {
+        if (y < 0 || y > tilesBelow.length - 1) {
+            return false;
+        }
+        if (x < 0 || x > tilesBelow[y].length - 1) {
+            return false;
+        }
+        return tilesBelow[y][x] === 5;
+    };
+
     this.render = function() {
 
         var x,
@@ -25,7 +35,7 @@ ld.Map = function() {
                     ld.ctx.drawImage(ld.cache.sprites['tiles'], (tilesAbove[y][x] - 1) * 60, 0, 60, 60, dx, dy, 60, 60);
                 }
                 if (belowIsVisible) {
-                ld.ctx.drawImage(ld.cache.sprites['tiles'], (tilesBelow[y][x] - 1) * 60, 0, 60, 60, dx, dy, 60, 60);
+                    ld.ctx.drawImage(ld.cache.sprites['tiles'], (tilesBelow[y][x] - 1) * 60, 0, 60, 60, dx, dy, 60, 60);
                 }
             }
         }

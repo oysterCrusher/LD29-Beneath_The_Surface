@@ -3,16 +3,36 @@ ld.Player = function() {
     var x = 3,
         y = 10;
 
-    this.update = function() {
-        if (ld.input.wasPressed('left')) {
+    this.moveLeft = function() {
+        if (ld.map.canMoveTo(x-1, y)) {
             x--;
-        } else if (ld.input.wasPressed('right')) {
-            x++;
-        } else if (ld.input.wasPressed('up')) {
-            y--;
-        } else if (ld.input.wasPressed('down')) {
-            y++;
+            return true;
         }
+        return false;
+    };
+
+    this.moveRight = function() {
+        if (ld.map.canMoveTo(x+1, y)) {
+            x++;
+            return true;
+        }
+        return false;
+    };
+
+    this.moveUp = function() {
+        if (ld.map.canMoveTo(x, y-1)) {
+            y--;
+            return true;
+        }
+        return false;
+    };
+
+    this.moveDown = function() {
+        if (ld.map.canMoveTo(x, y+1)) {
+            y++;
+            return true;
+        }
+        return false;
     };
 
     this.render = function() {
