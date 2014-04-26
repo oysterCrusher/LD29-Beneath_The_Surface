@@ -10,20 +10,20 @@ ld.Level = function() {
 
     this.update = function() {
         if (ld.input.wasPressed('left')) {
-            if (ld.player.moveLeft()) {
-                console.log('left')
+            if (ld.player.move(-1, 0)) {
+
             }
         } else if (ld.input.wasPressed('right')) {
-            if (ld.player.moveRight()) {
-                console.log('right')
+            if (ld.player.move(1, 0)) {
+
             }
         } else if (ld.input.wasPressed('up')) {
-            if (ld.player.moveUp()) {
-                console.log('up')
+            if (ld.player.move(0, -1)) {
+
             }
         } else if (ld.input.wasPressed('down')) {
-            if (ld.player.moveDown()) {
-                console.log('down')
+            if (ld.player.move(0, 1)) {
+
             }
         }
     };

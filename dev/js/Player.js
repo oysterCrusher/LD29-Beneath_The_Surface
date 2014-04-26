@@ -3,33 +3,30 @@ ld.Player = function() {
     var x = 3,
         y = 10;
 
-    this.moveLeft = function() {
-        if (ld.map.canMoveTo(x-1, y)) {
-            x--;
-            return true;
-        }
-        return false;
-    };
+    this.move = function(dx, dy) {
 
-    this.moveRight = function() {
-        if (ld.map.canMoveTo(x+1, y)) {
-            x++;
-            return true;
-        }
-        return false;
-    };
+        var xp = x + dx,
+            yp = y + dy;
 
-    this.moveUp = function() {
-        if (ld.map.canMoveTo(x, y-1)) {
-            y--;
-            return true;
+        if (xp !== x && yp !== y) {
+            console.log('Warning: can only move in one direction at a time');
+            return;
         }
-        return false;
-    };
 
-    this.moveDown = function() {
-        if (ld.map.canMoveTo(x, y+1)) {
-            y++;
+        while (ld.blocks.isBlockAt(xp, yp)) {
+            xp += dx;
+            yp += dy;
+        }
+        if (ld.map.canMoveTo(xp, yp)) {
+            xp -= dx;
+            yp -= dy;
+            while (ld.blocks.isBlockAt(xp, yp)) {
+                ld.blocks.moveBlock(xp, yp, dx, dy);
+                xp -= dx;
+                yp -= dy;
+            }
+            x += dx;
+            y += dy;
             return true;
         }
         return false;
