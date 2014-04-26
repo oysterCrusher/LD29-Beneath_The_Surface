@@ -23,9 +23,9 @@ ld.Cracks = function() {
         return r;
     };
 
-    this.render = function() {
+    this.render = function(v) {
         for (var i = 0; i < cracks.length; i++) {
-            cracks[i].render();
+            cracks[i].render(v);
         }
     };
 
@@ -38,8 +38,12 @@ ld.Crack = function(x, y) {
 
     this.y = y;
 
-    this.render = function() {
-        ld.ctx.drawImage(ld.cache.sprites['crack'], 0, 0, 60, 60, this.x * 60 + 40, this.y * 60 + 30, 60, 60);
+    this.render = function(view) {
+        if (view === 'below') {
+            ld.ctx.drawImage(ld.cache.sprites['crack_below'], 0, 0, 60, 60, this.x * 60 + 40, this.y * 60 + 30, 60, 60);
+        } else {
+            ld.ctx.drawImage(ld.cache.sprites['crack_above'], 0, 0, 60, 60, this.x * 60 + 40, this.y * 60 + 30, 60, 60);
+        }
     };
 
 };

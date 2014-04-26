@@ -1,7 +1,7 @@
 ld.Level = function() {
 
     var levelNumber = 0,
-        isComplete = false;
+        view = 'below';
 
     this.loadLevel = function(n) {
         levelNumber = n;
@@ -10,29 +10,31 @@ ld.Level = function() {
         ld.blocks.setLevel(n);
         ld.persons.setLevel(n);
         ld.cracks.setLevel(n);
-        isComplete = false;
     };
 
     this.update = function() {
-        if (isComplete) {
-            return;
+
+        if (ld.input.wasPressed('space')) {
+            toggleView();
         }
 
-        if (ld.input.wasPressed('left')) {
-            if (ld.player.move(-1, 0)) {
-                ld.persons.advance();
-            }
-        } else if (ld.input.wasPressed('right')) {
-            if (ld.player.move(1, 0)) {
-                ld.persons.advance();
-            }
-        } else if (ld.input.wasPressed('up')) {
-            if (ld.player.move(0, -1)) {
-                ld.persons.advance();
-            }
-        } else if (ld.input.wasPressed('down')) {
-            if (ld.player.move(0, 1)) {
-                ld.persons.advance();
+        if (view === 'below') {
+            if (ld.input.wasPressed('left')) {
+                if (ld.player.move(-1, 0)) {
+                    ld.persons.advance();
+                }
+            } else if (ld.input.wasPressed('right')) {
+                if (ld.player.move(1, 0)) {
+                    ld.persons.advance();
+                }
+            } else if (ld.input.wasPressed('up')) {
+                if (ld.player.move(0, -1)) {
+                    ld.persons.advance();
+                }
+            } else if (ld.input.wasPressed('down')) {
+                if (ld.player.move(0, 1)) {
+                    ld.persons.advance();
+                }
             }
         }
 
@@ -41,12 +43,17 @@ ld.Level = function() {
         }
     };
 
+    function toggleView() {
+        view = view === 'above' ? 'below' : 'above';
+        ld.input.clear();
+    }
+
     this.render = function() {
-        ld.map.render();
-        ld.cracks.render();
-        ld.blocks.render();
-        ld.player.render();
-        ld.persons.render();
+        ld.map.render(view);
+        ld.cracks.render(view);
+        ld.blocks.render(view);
+        ld.player.render(view);
+        ld.persons.render(view);
     };
 
 };

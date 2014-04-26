@@ -4,7 +4,8 @@ ld.Input = function() {
             left: false,
             right: false,
             up: false,
-            down: false
+            down: false,
+            space: false
         },
         mouse = {
             wasClicked: false,
@@ -38,7 +39,8 @@ ld.Input = function() {
             left: false,
             right: false,
             up: false,
-            down: false
+            down: false,
+            space: false
         };
         mouse = {
             wasClicked: false,
@@ -64,6 +66,9 @@ ld.Input = function() {
                 break;
             case 40:
                 wasPressed.down = true;
+                break;
+            case 32:
+                wasPressed.space = true;
                 break;
         }
     }

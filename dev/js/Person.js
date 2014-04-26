@@ -29,9 +29,9 @@ ld.Persons = function() {
         return r;
     };
 
-    this.render = function() {
+    this.render = function(v) {
         for (var i = 0; i < persons.length; i++) {
-            persons[i].render();
+            persons[i].render(v);
         }
     };
 
@@ -72,12 +72,15 @@ ld.Person = function(path) {
 
     };
 
-    this.render = function() {
+    this.render = function(view) {
         var tx = path[progress][0] + (subprogress / substeps) * (path[progress+1][0] - path[progress][0]),
             ty = path[progress][1] + (subprogress / substeps) * (path[progress+1][1] - path[progress][1]);
 
-        ld.ctx.globalAlpha = 0.3;
+        if (view === 'below') {
+            ld.ctx.globalAlpha = 0.2;
+        }
         ld.ctx.drawImage(ld.cache.sprites['person'], 60, 0, 60, 60, tx * 60 + 40, ty * 60 + 30, 60, 60);
+
         ld.ctx.globalAlpha = 1.0;
     }
 

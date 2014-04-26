@@ -33,9 +33,9 @@ ld.Blocks = function() {
         }
     };
 
-    this.render = function() {
+    this.render = function(v) {
         for (var i = 0; i < blocks.length; i++) {
-            blocks[i].render();
+            blocks[i].render(v);
         }
     };
 
@@ -47,8 +47,10 @@ ld.Block = function(x, y) {
 
     this.y = y;
 
-    this.render = function() {
-        ld.ctx.drawImage(ld.cache.sprites['block'], 0, 0, 60, 60, this.x * 60 + 40, this.y * 60 + 30, 60, 60);
+    this.render = function(view) {
+        if (view === 'below') {
+            ld.ctx.drawImage(ld.cache.sprites['block'], 0, 0, 60, 60, this.x * 60 + 40, this.y * 60 + 30, 60, 60);
+        }
     }
 
 };
