@@ -113,14 +113,15 @@ ld.Person = function(x, y, xT, yT) {
 
     this.render = function(view) {
         var dx = d0[0] + (subprogress / substeps) * (d1[0] - d0[0]),
-            dy = d0[1] + (subprogress / substeps) * (d1[1] - d0[1]);
+            dy = d0[1] + (subprogress / substeps) * (d1[1] - d0[1]),
+            gao = ld.ctx.globalAlpha;
 
         if (view === 'below') {
             ld.ctx.globalAlpha = 0.2;
         }
         ld.ctx.drawImage(ld.cache.sprites['person'], 0, 0, 60, 60, dx, dy, 60, 60);
 
-        ld.ctx.globalAlpha = 1.0;
+        ld.ctx.globalAlpha = gao;
     }
 
 };

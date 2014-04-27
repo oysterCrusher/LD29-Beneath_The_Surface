@@ -15,6 +15,7 @@ ld.Game = function() {
     this.update = function(dt) {
         if (transTimer < transTime2) {
             transTimer += dt;
+            ld.input.clear();
         } else {
             ld.level.update();
         }
