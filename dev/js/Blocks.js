@@ -74,8 +74,9 @@ ld.Blocks = function() {
 ld.Block = function(x, y, d) {
 
     var history = [
-        [x, y]
-    ];
+            [x, y]
+        ],
+        dr = [0, 0];
 
     this.x = x;
 
@@ -83,19 +84,25 @@ ld.Block = function(x, y, d) {
 
     this.d = d;
 
+    dr = ld.map.getDFromT(this.x, this.y);
+
     this.advance = function() {
         history.push([this.x, this.y]);
+        dr = ld.map.getDFromT(this.x, this.y);
     };
 
     this.retreat = function() {
         this.x = history[history.length - 2][0];
         this.y = history[history.length - 2][1];
         history.pop();
+        dr = ld.map.getDFromT(this.x, this.y);
     };
 
     this.render = function(view) {
         if (view === 'below') {
-            ld.ctx.drawImage(ld.cache.sprites['block'], 60 * this.d, 0, 60, 60, this.x * 60 + 40, this.y * 60 + 30, 60, 60);
+            ld.ctx.drawImage(ld.cache.sprites['block'], 60 * this.d, 0, 60, 60, dr[0], dr[1], 60, 60);
+        } else if (ld.map.isHole(this.x, this.y)) {
+            ld.ctx.drawImage(ld.cache.sprites['block'], 60 * this.d, 0, 60, 60, dr[0], dr[1], 60, 60);
         }
     }
 

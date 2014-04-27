@@ -53,11 +53,16 @@ ld.Person = function(x, y, xT, yT) {
         y0 = y,
         x1 = 0,
         y1 = 0,
+        d0 = [0, 0],
+        d1 = [0, 0],
         target = [xT, yT],
         history = [];
 
     getNextTile();
     history.push([progress, subprogress, x0, y0, x1, y1]);
+    d0 = ld.map.getDFromT(x0, y0);
+    d1 = ld.map.getDFromT(x1, y1);
+    console.log(history);
 
     this.hasFinished = false;
 
@@ -78,6 +83,8 @@ ld.Person = function(x, y, xT, yT) {
 
         history.push([progress, subprogress, x0, y0, x1, y1]);
 
+        d0 = ld.map.getDFromT(x0, y0);
+        d1 = ld.map.getDFromT(x1, y1);
     };
 
     function getNextTile() {
@@ -101,16 +108,18 @@ ld.Person = function(x, y, xT, yT) {
         x1 = history[history.length - 2][4];
         y1 = history[history.length - 2][5];
         history.pop();
+        d0 = ld.map.getDFromT(x0, y0);
+        d1 = ld.map.getDFromT(x1, y1);
     };
 
     this.render = function(view) {
-        var tx = x0 + (subprogress / substeps) * (x1 - x0),
-            ty = y0 + (subprogress / substeps) * (y1 - y0);
+        var dx = d0[0] + (subprogress / substeps) * (d1[0] - d0[0]),
+            dy = d0[1] + (subprogress / substeps) * (d1[1] - d0[1]);
 
         if (view === 'below') {
             ld.ctx.globalAlpha = 0.2;
         }
-        ld.ctx.drawImage(ld.cache.sprites['person'], 0, 0, 60, 60, tx * 60 + 40, ty * 60 + 30, 60, 60);
+        ld.ctx.drawImage(ld.cache.sprites['person'], 0, 0, 60, 60, dx, dy, 60, 60);
 
         ld.ctx.globalAlpha = 1.0;
     }

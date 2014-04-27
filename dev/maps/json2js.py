@@ -2,8 +2,10 @@ import json
 
 map01 = {'name': '01', 'players': [[0,5,19,5]] }
 map02 = {'name': '02', 'players': [[5,0,14,0]] }
+map03 = {'name': '03', 'players': [[19,6,0,6]] }
+map04 = {'name': '04', 'players': [[10,4,0,4]] }
 
-maps = [map01, map02]
+maps = [map01, map02, map03, map04]
 
 output_file = '../js/maps.js'
 
@@ -49,7 +51,7 @@ for file in maps:
 		below_map_array.append(below_row_data)
 		
 	comma = ','
-	if (file['name'] == '02'):
+	if (file['name'] == maps[-1]['name']):
 		comma = ''
 	outfile.write('{\nabove:\n' + str(above_map_array) + ',\nbelow:\n' + str(below_map_array) + ',\nblocks:\n' + str(blocks_array) + ',\npersons:\n' + str(file['players']) + '\n}' + comma + '\n')
 

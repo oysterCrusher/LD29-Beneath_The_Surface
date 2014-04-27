@@ -2,24 +2,25 @@ ld.Player = function() {
 
     var x = 3,
         y = 10,
+        d = [0, 0],
         history = [];
 
     this.setLevel = function(n) {
         x = ld.maps[n].persons[0][0];
         y = ld.maps[n].persons[0][1];
-        history = [
-            [x, y]
-        ];
+        this.advance();
     };
 
     this.advance = function() {
         history.push([x, y]);
+        d = ld.map.getDFromT(x, y);
     };
 
     this.retreat = function() {
         x = history[history.length - 2][0];
         y = history[history.length - 2][1];
         history.pop();
+        d = ld.map.getDFromT(x, y);
     };
 
     this.move = function(dx, dy) {
@@ -53,7 +54,7 @@ ld.Player = function() {
 
     this.render = function(view) {
         if (view === 'below') {
-            ld.ctx.drawImage(ld.cache.sprites['player'], 0, 0, 60, 60, x * 60 + 40, y * 60 + 30, 60, 60);
+            ld.ctx.drawImage(ld.cache.sprites['player'], 0, 0, 60, 60, d[0], d[1], 60, 60);
         }
     };
 

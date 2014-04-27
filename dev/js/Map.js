@@ -31,21 +31,27 @@ ld.Map = function() {
         return [-1, -1];
     };
 
+    this.isHole = function(x, y) {
+        return tilesAbove[y][x] === 5;
+    };
+
+    this.getDFromT = function(x, y) {
+        return [Math.round(x * 60 + (1280 - tilesAbove[y].length * 60) * 0.5), Math.round(y * 60 + (720 - tilesAbove.length * 60) * 0.5)];
+    };
+
     this.render = function(view) {
 
         var x,
             y,
-            dx = 0,
-            dy = 0;
+            d = [0, 0];
 
         for (y = 0; y < tilesAbove.length; y++) {
             for (x = 0; x < tilesAbove[y].length; x++) {
-                dx = x * 60 + 40;
-                dy = y * 60 + 30;
+                d = this.getDFromT(x, y);
                 if (view === 'above') {
-                    ld.ctx.drawImage(ld.cache.sprites['tiles'], (tilesAbove[y][x] - 1) * 60, 0, 60, 60, dx, dy, 60, 60);
+                    ld.ctx.drawImage(ld.cache.sprites['tiles'], (tilesAbove[y][x] - 1) * 60, 0, 60, 60, d[0], d[1], 60, 60);
                 } else {
-                    ld.ctx.drawImage(ld.cache.sprites['tiles'], (tilesBelow[y][x] - 1) * 60, 0, 60, 60, dx, dy, 60, 60);
+                    ld.ctx.drawImage(ld.cache.sprites['tiles'], (tilesBelow[y][x] - 1) * 60, 0, 60, 60, d[0], d[1], 60, 60);
                 }
             }
         }
