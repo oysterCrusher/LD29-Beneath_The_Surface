@@ -5,8 +5,9 @@ map02 = {'name': '02', 'players': [[4,0,6,8]] }
 map03 = {'name': '03', 'players': [[7,4,0,5]] }
 map04 = {'name': '04', 'players': [[10,4,0,4]] }
 map05 = {'name': '05', 'players': [[7,7,2,7]] }
+map06 = {'name': '06', 'players': [[0,1,10,5]] }
 
-maps = [map01, map02, map03, map04, map05]
+maps = [map01, map02, map03, map04, map05, map06]
 
 output_file = '../js/maps.js'
 
