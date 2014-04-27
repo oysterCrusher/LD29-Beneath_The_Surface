@@ -88,6 +88,9 @@ ld.Level = function() {
         ld.blocks.render(v);
         ld.player.render(v);
         ld.persons.render(v);
+        if (v === 'above') {
+            ld.ctx.drawImage(ld.cache.sprites['level_numbers'], 0, 39 * levelNumber, 65, 39, 620, 20, 65, 39);
+        }
     }
 
 };
