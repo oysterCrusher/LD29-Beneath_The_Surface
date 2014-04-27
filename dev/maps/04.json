@@ -1,0 +1,50 @@
+{ "height": 9,
+    "layers": [
+        {
+            "data": [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 7, 12, 7, 8, 8, 8, 8, 7, 7, 7, 8, 5, 11, 7, 8, 7, 7, 7, 7, 7, 7, 7, 5, 9, 5, 7, 7, 7, 7, 7, 7, 7, 8, 5, 7, 7, 8, 7, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],
+            "height": 9,
+            "name": "below",
+            "opacity": 1,
+            "type": "tilelayer",
+            "visible": true,
+            "width": 11,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "data": [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 4, 4, 6, 6, 6, 6, 4, 4, 4, 4, 5, 4, 5, 4, 4, 4, 4, 6, 6, 6, 6, 5, 4, 4, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+            "height": 9,
+            "name": "above",
+            "opacity": 1,
+            "type": "tilelayer",
+            "visible": false,
+            "width": 11,
+            "x": 0,
+            "y": 0
+        }
+    ],
+    "orientation": "orthogonal",
+    "properties": {
+
+    },
+    "tileheight": 60,
+    "tilesets": [
+        {
+            "firstgid": 1,
+            "image": "..\/assets\/tiles3.png",
+            "imageheight": 60,
+            "imagewidth": 900,
+            "margin": 0,
+            "name": "tiles3",
+            "properties": {
+
+            },
+            "spacing": 0,
+            "tileheight": 60,
+            "tilewidth": 60
+        }
+    ],
+    "tilewidth": 60,
+    "version": 1,
+    "width": 11
+}
