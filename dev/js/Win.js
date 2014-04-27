@@ -9,9 +9,7 @@ ld.Win = function() {
     };
 
     this.update = function() {
-        if (ld.input.getMouse().wasClicked) {
-            ld.state.changeState('mainMenu');
-        } else if (ld.input.wasPressed(ld.Keycodes.Space)) {
+        if (ld.input.wasPressed(ld.Keycodes.Space)) {
             ld.state.changeState('mainMenu');
         }
     };

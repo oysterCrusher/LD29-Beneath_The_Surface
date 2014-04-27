@@ -15,10 +15,7 @@ ld.MainMenu = function() {
     };
 
     this.update = function(dt) {
-        if (ld.input.getMouse().wasClicked) {
-            ld.level.loadLevel(currentLevel);
-            ld.state.changeState('game');
-        } else if (ld.input.wasPressed(ld.Keycodes.Space)) {
+        if (ld.input.wasPressed(ld.Keycodes.Space)) {
             ld.level.loadLevel(currentLevel);
             ld.state.changeState('game');
         } else if (ld.input.wasPressed(ld.Keycodes.Down)) {
@@ -48,6 +45,7 @@ ld.MainMenu = function() {
         ld.ctx.fillStyle = '#000000';
         ld.ctx.fillRect(0, 0, ld.canvas.width, ld.canvas.height);
         ld.ctx.drawImage(ld.cache.sprites['title'], 0, 0, 282, 60, 80, 50, 282, 60);
+        ld.ctx.drawImage(ld.cache.sprites['help'], 0, 0, 440, 374, 80, 300, 448, 374);
         ld.ctx.drawImage(ld.cache.sprites['menu_arrow'], 0, 0, 60, 60, 680, 330, 60, 60);
 
         for (var i = 0; i < ld.maps.length; i++) {

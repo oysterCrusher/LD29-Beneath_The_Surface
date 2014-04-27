@@ -1,15 +1,15 @@
 ld.Input = function() {
 
-    var wasPressed = {},
-        mouse = {
-            wasClicked: false,
-            x: 0,
-            y: 0
-        };
+    var wasPressed = {};
+//        mouse = {
+//            wasClicked: false,
+//            x: 0,
+//            y: 0
+//        };
 
     this.start = function() {
         bindKeyboard();
-        bindMouse();
+//        bindMouse();
     };
 
     this.wasPressed = function(keyCode) {
@@ -21,23 +21,23 @@ ld.Input = function() {
         return r;
     };
 
-    this.getMouse = function() {
-        var r = {
-            wasClicked: mouse.wasClicked,
-            x: mouse.x,
-            y: mouse.y
-        };
-        mouse.wasClicked = false;
-        return r;
-    };
+//    this.getMouse = function() {
+//        var r = {
+//            wasClicked: mouse.wasClicked,
+//            x: mouse.x,
+//            y: mouse.y
+//        };
+//        mouse.wasClicked = false;
+//        return r;
+//    };
 
     this.clear = function() {
         wasPressed = {};
-        mouse = {
-            wasClicked: false,
-            x: 0,
-            y: 0
-        };
+//        mouse = {
+//            wasClicked: false,
+//            x: 0,
+//            y: 0
+//        };
     };
 
     function bindKeyboard() {
@@ -48,14 +48,14 @@ ld.Input = function() {
         wasPressed[evt.keyCode] = true;
     }
 
-    function bindMouse() {
-        ld.canvas.addEventListener('mousedown', onMouseDown, false);
-    }
-
-    function onMouseDown(evt) {
-        mouse.wasClicked = true;
-        mouse.x = evt.pageX - evt.target.getBoundingClientRect().left;
-        mouse.y = evt.pageY - evt.target.getBoundingClientRect().top;
-    }
+//    function bindMouse() {
+//        ld.canvas.addEventListener('mousedown', onMouseDown, false);
+//    }
+//
+//    function onMouseDown(evt) {
+//        mouse.wasClicked = true;
+//        mouse.x = evt.pageX - evt.target.getBoundingClientRect().left;
+//        mouse.y = evt.pageY - evt.target.getBoundingClientRect().top;
+//    }
 
 };

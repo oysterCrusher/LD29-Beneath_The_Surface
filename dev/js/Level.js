@@ -11,6 +11,7 @@ ld.Level = function() {
         ld.player.setLevel(n);
         ld.blocks.setLevel(n);
         ld.persons.setLevel(n);
+        nSteps = 0;
     };
 
     this.update = function() {
@@ -36,10 +37,14 @@ ld.Level = function() {
                 if (ld.player.move(0, 1)) {
                     advance();
                 }
-            } else if (ld.input.wasPressed(ld.Keycodes.E)) {
+            } else if (ld.input.wasPressed(ld.Keycodes.W)) {
                 advance();
-            } else if (ld.input.wasPressed(ld.Keycodes.Q)) {
+            } else if (ld.input.wasPressed(ld.Keycodes.U)) {
                 retreat();
+            } else if (ld.input.wasPressed(ld.Keycodes.R)) {
+                this.loadLevel(levelNumber);
+            } else if (ld.input.wasPressed(ld.Keycodes.M)) {
+                ld.state.changeState('mainMenu');
             }
         }
 
