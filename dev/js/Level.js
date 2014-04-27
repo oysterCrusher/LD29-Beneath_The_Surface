@@ -6,7 +6,6 @@ ld.Level = function() {
 
     this.loadLevel = function(n) {
         levelNumber = n;
-        console.log(levelNumber);
         ld.map.setLevel(n);
         ld.player.setLevel(n);
         ld.blocks.setLevel(n);
@@ -20,32 +19,30 @@ ld.Level = function() {
             toggleView();
         }
 
-        if (view === 'below') {
-            if (ld.input.wasPressed(ld.Keycodes.Left)) {
-                if (ld.player.move(-1, 0)) {
-                    advance();
-                }
-            } else if (ld.input.wasPressed(ld.Keycodes.Right)) {
-                if (ld.player.move(1, 0)) {
-                    advance();
-                }
-            } else if (ld.input.wasPressed(ld.Keycodes.Up)) {
-                if (ld.player.move(0, -1)) {
-                    advance();
-                }
-            } else if (ld.input.wasPressed(ld.Keycodes.Down)) {
-                if (ld.player.move(0, 1)) {
-                    advance();
-                }
-            } else if (ld.input.wasPressed(ld.Keycodes.W)) {
+        if (ld.input.wasPressed(ld.Keycodes.Left)) {
+            if (ld.player.move(-1, 0)) {
                 advance();
-            } else if (ld.input.wasPressed(ld.Keycodes.U)) {
-                retreat();
-            } else if (ld.input.wasPressed(ld.Keycodes.R)) {
-                this.loadLevel(levelNumber);
-            } else if (ld.input.wasPressed(ld.Keycodes.M)) {
-                ld.state.changeState('mainMenu');
             }
+        } else if (ld.input.wasPressed(ld.Keycodes.Right)) {
+            if (ld.player.move(1, 0)) {
+                advance();
+            }
+        } else if (ld.input.wasPressed(ld.Keycodes.Up)) {
+            if (ld.player.move(0, -1)) {
+                advance();
+            }
+        } else if (ld.input.wasPressed(ld.Keycodes.Down)) {
+            if (ld.player.move(0, 1)) {
+                advance();
+            }
+        } else if (ld.input.wasPressed(ld.Keycodes.W)) {
+            advance();
+        } else if (ld.input.wasPressed(ld.Keycodes.U)) {
+            retreat();
+        } else if (ld.input.wasPressed(ld.Keycodes.R)) {
+            this.loadLevel(levelNumber);
+        } else if (ld.input.wasPressed(ld.Keycodes.M)) {
+            ld.state.changeState('mainMenu');
         }
 
         if (ld.persons.hasFinished()) {

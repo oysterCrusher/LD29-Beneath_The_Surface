@@ -62,7 +62,6 @@ ld.Person = function(x, y, xT, yT) {
     history.push([progress, subprogress, x0, y0, x1, y1]);
     d0 = ld.map.getDFromT(x0, y0);
     d1 = ld.map.getDFromT(x1, y1);
-    console.log(history);
 
     this.hasFinished = false;
 
