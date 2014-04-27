@@ -10,7 +10,7 @@ ld.Level = function() {
         ld.player.setLevel(n);
         ld.blocks.setLevel(n);
         ld.persons.setLevel(n);
-        ld.cracks.setLevel(n);
+//        ld.cracks.setLevel(n);
     };
 
     this.update = function() {
@@ -71,7 +71,7 @@ ld.Level = function() {
 
     this.render = function() {
         ld.map.render(view);
-        ld.cracks.render(view);
+//        ld.cracks.render(view);
         ld.blocks.render(view);
         ld.player.render(view);
         ld.persons.render(view);

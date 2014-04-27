@@ -5,12 +5,12 @@ ld.Blocks = function() {
     this.setLevel = function(n) {
         blocks = [];
         for (var i = 0; i < ld.maps[n].blocks.length; i++) {
-            addBlock(ld.maps[n].blocks[i][0], ld.maps[n].blocks[i][1]);
+            addBlock(ld.maps[n].blocks[i][0], ld.maps[n].blocks[i][1], ld.maps[n].blocks[i][2]);
         }
     };
 
-    function addBlock(x, y) {
-        blocks.push(new ld.Block(x, y));
+    function addBlock(x, y, d) {
+        blocks.push(new ld.Block(x, y, d));
     }
 
     this.isBlockAt = function(x, y) {
@@ -33,6 +33,24 @@ ld.Blocks = function() {
         }
     };
 
+    this.getBlockDir = function(x, y) {
+        for (var i = 0; i < blocks.length; i++) {
+            if (blocks[i].x === x && blocks[i].y === y) {
+                if (blocks[i].d === 0) {
+                    return [0, -1];
+                } else if (blocks[i].d === 1) {
+                    return [1, 0];
+                } else if (blocks[i].d === 2) {
+                    return [0, 1];
+                } else if (blocks[i].d === 3) {
+                    return [-1, 0];
+                }
+                return [-1, -1];
+            }
+        }
+        return [-1, -1];
+    };
+
     this.advance = function() {
         for (var i = 0; i < blocks.length; i++) {
             blocks[i].advance();
@@ -53,7 +71,7 @@ ld.Blocks = function() {
 
 };
 
-ld.Block = function(x, y) {
+ld.Block = function(x, y, d) {
 
     var history = [
         [x, y]
@@ -63,19 +81,21 @@ ld.Block = function(x, y) {
 
     this.y = y;
 
+    this.d = d;
+
     this.advance = function() {
         history.push([this.x, this.y]);
     };
 
     this.retreat = function() {
-        this.x = history[history.length - 2][0];
-        this.y = history[history.length - 2][1];
+        this.x = history[history.length - 1][0];
+        this.y = history[history.length - 1][1];
         history.pop();
     };
 
     this.render = function(view) {
         if (view === 'below') {
-            ld.ctx.drawImage(ld.cache.sprites['block'], 0, 0, 60, 60, this.x * 60 + 40, this.y * 60 + 30, 60, 60);
+            ld.ctx.drawImage(ld.cache.sprites['block'], 60 * this.d, 0, 60, 60, this.x * 60 + 40, this.y * 60 + 30, 60, 60);
         }
     }
 

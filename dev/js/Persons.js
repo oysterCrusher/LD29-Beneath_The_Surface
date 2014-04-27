@@ -5,12 +5,12 @@ ld.Persons = function() {
     this.setLevel = function(n) {
         persons = [];
         for (var i = 0; i < ld.maps[n].persons.length; i++) {
-            addPerson(ld.maps[n].persons[i]);
+            addPerson(ld.maps[n].persons[i][0], ld.maps[n].persons[i][1], ld.maps[n].persons[i][2], ld.maps[n].persons[i][3]);
         }
     };
 
-    function addPerson(p) {
-        persons.push(new ld.Person(p));
+    function addPerson(x, y, xT, yT) {
+        persons.push(new ld.Person(x, y, xT, yT));
     }
 
     this.advance = function() {
@@ -44,54 +44,68 @@ ld.Persons = function() {
 };
 
 
-ld.Person = function(path) {
+ld.Person = function(x, y, xT, yT) {
 
     var progress = 0,
         subprogress = 0,
         substeps = 3,
-        history = [
-            [0, 0]
-        ];
+        x0 = x,
+        y0 = y,
+        x1 = 0,
+        y1 = 0,
+        target = [xT, yT],
+        history = [];
+
+    getNextTile();
+    history.push([progress, subprogress, x0, y0, x1, y1]);
 
     this.hasFinished = false;
 
     this.advance = function() {
 
-        if (progress >= path.length - 2) {
-            if (!this.hasFinished) {
-                this.hasFinished = true;
-            }
-            return;
-        }
-
         subprogress += 1;
         if (subprogress >= substeps) {
+            if (x1 === target[0] && y1 === target[1]) {
+                this.hasFinished = true;
+                return;
+            }
             progress++;
             subprogress -= substeps;
+            x0 = x1;
+            y0 = y1;
+            getNextTile();
         }
 
-        history.push([progress, subprogress]);
-
-        // Check to see if we fall through a crack
-        var cTileX = path[progress][0] + Math.round(subprogress / substeps) * (path[progress + 1][0] - path[progress][0]),
-            cTileY = path[progress][1] + Math.round(subprogress / substeps) * (path[progress + 1][1] - path[progress][1]);
-        if (ld.cracks.isCrackAt(cTileX, cTileY)) {
-            if (!ld.blocks.isBlockAt(cTileX, cTileY)) {
-                ld.state.changeState('lose');
-            }
-        }
+        history.push([progress, subprogress, x0, y0, x1, y1]);
 
     };
+
+    function getNextTile() {
+        var dir = ld.map.getTileDir(x0, y0);
+        if (dir[0] === -1 && dir[1] === -1) {
+            dir = ld.blocks.getBlockDir(x0, y0);
+        }
+        if (dir[0] === -1 && dir[1] === -1) {
+            ld.state.changeState('lose');
+        } else {
+            x1 = x0 + dir[0];
+            y1 = y0 + dir[1];
+        }
+    }
 
     this.retreat = function() {
         progress = history[history.length - 2][0];
         subprogress = history[history.length - 2][1];
+        x0 = history[history.length - 2][2];
+        y0 = history[history.length - 2][3];
+        x1 = history[history.length - 2][4];
+        y1 = history[history.length - 2][5];
         history.pop();
     };
 
     this.render = function(view) {
-        var tx = path[progress][0] + (subprogress / substeps) * (path[progress + 1][0] - path[progress][0]),
-            ty = path[progress][1] + (subprogress / substeps) * (path[progress + 1][1] - path[progress][1]);
+        var tx = x0 + (subprogress / substeps) * (x1 - x0),
+            ty = y0 + (subprogress / substeps) * (y1 - y0);
 
         if (view === 'below') {
             ld.ctx.globalAlpha = 0.2;

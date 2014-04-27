@@ -5,8 +5,8 @@ ld.Player = function() {
         history = [];
 
     this.setLevel = function(n) {
-        x = ld.maps[n].persons[0][0][0];
-        y = ld.maps[n].persons[0][0][1];
+        x = ld.maps[n].persons[0][0];
+        y = ld.maps[n].persons[0][1];
         history = [
             [x, y]
         ];

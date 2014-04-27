@@ -15,7 +15,20 @@ ld.Map = function() {
         if (x < 0 || x > tilesBelow[y].length - 1) {
             return false;
         }
-        return (tilesBelow[y][x] === 8) || (tilesBelow[y][x] === 9) || (tilesBelow[y][x] === 10);
+        return (tilesBelow[y][x] === 7) || (tilesBelow[y][x] === 5);
+    };
+
+    this.getTileDir = function(x, y) {
+        if (tilesAbove[y][x] === 1) {
+            return [0, -1];
+        } else if (tilesAbove[y][x] === 2) {
+            return [1, 0];
+        } else if (tilesAbove[y][x] === 3) {
+            return [0, 1];
+        } else if (tilesAbove[y][x] === 4) {
+            return [-1, 0];
+        }
+        return [-1, -1];
     };
 
     this.render = function(view) {
