@@ -10,7 +10,6 @@ ld.Level = function() {
         ld.player.setLevel(n);
         ld.blocks.setLevel(n);
         ld.persons.setLevel(n);
-//        ld.cracks.setLevel(n);
     };
 
     this.update = function() {

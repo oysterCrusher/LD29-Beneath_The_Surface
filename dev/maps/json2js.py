@@ -1,8 +1,8 @@
 import json
 
-map0 = {'name': 'test03', 'players': [[3,10,16,0]] }
+map01 = {'name': '01', 'players': [[0,5,19,5]] }
 
-maps = [map0]
+maps = [map01]
 
 output_file = '../js/maps.js'
 
