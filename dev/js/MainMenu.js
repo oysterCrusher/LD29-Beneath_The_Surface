@@ -16,7 +16,7 @@ ld.MainMenu = function() {
 
     this.update = function(dt) {
         if (ld.input.getMouse().wasClicked) {
-            ld.level.loadLevel(0);
+            ld.level.loadLevel(currentLevel);
             ld.state.changeState('game');
         } else if (ld.input.wasPressed(ld.Keycodes.Space)) {
             ld.level.loadLevel(currentLevel);

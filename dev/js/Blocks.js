@@ -88,8 +88,8 @@ ld.Block = function(x, y, d) {
     };
 
     this.retreat = function() {
-        this.x = history[history.length - 1][0];
-        this.y = history[history.length - 1][1];
+        this.x = history[history.length - 2][0];
+        this.y = history[history.length - 2][1];
         history.pop();
     };
 

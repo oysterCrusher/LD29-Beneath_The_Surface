@@ -1,8 +1,9 @@
 import json
 
 map01 = {'name': '01', 'players': [[0,5,19,5]] }
+map02 = {'name': '02', 'players': [[5,0,14,0]] }
 
-maps = [map01]
+maps = [map01, map02]
 
 output_file = '../js/maps.js'
 
@@ -11,6 +12,8 @@ js_tail = '];'
 
 outfile = open(output_file, 'w')
 outfile.write(js_head)
+
+out_map_data = []
 
 for file in maps:
 	file_data = open(file['name'] + '.json', 'r')
@@ -45,7 +48,10 @@ for file in maps:
 		above_map_array.append(above_row_data)
 		below_map_array.append(below_row_data)
 		
-	outfile.write('{\nabove:\n' + str(above_map_array) + ',\nbelow:\n' + str(below_map_array) + ',\nblocks:\n' + str(blocks_array) + ',\npersons:\n' + str(file['players']) + '\n}\n')
+	comma = ','
+	if (file['name'] == '02'):
+		comma = ''
+	outfile.write('{\nabove:\n' + str(above_map_array) + ',\nbelow:\n' + str(below_map_array) + ',\nblocks:\n' + str(blocks_array) + ',\npersons:\n' + str(file['players']) + '\n}' + comma + '\n')
 
 outfile.write(js_tail)
 outfile.close()

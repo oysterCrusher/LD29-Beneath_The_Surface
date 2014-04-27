@@ -6,6 +6,7 @@ ld.Level = function() {
 
     this.loadLevel = function(n) {
         levelNumber = n;
+        console.log(levelNumber);
         ld.map.setLevel(n);
         ld.player.setLevel(n);
         ld.blocks.setLevel(n);
