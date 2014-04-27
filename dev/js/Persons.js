@@ -14,9 +14,13 @@ ld.Persons = function() {
     }
 
     this.advance = function() {
+        var r = false;
         for (var i = 0; i < persons.length; i++) {
-            persons[i].advance();
+            if (persons[i].advance()) {
+                r = true;
+            }
         }
+        return r;
     };
 
     this.retreat = function() {
@@ -67,6 +71,8 @@ ld.Person = function(x, y, xT, yT) {
 
     this.advance = function() {
 
+        var r = false;
+
         subprogress += 1;
         if (subprogress >= substeps) {
             if (x1 === target[0] && y1 === target[1]) {
@@ -77,13 +83,15 @@ ld.Person = function(x, y, xT, yT) {
             subprogress -= substeps;
             x0 = x1;
             y0 = y1;
-            getNextTile();
+            r = getNextTile();
         }
 
         history.push([progress, subprogress, x0, y0, x1, y1]);
 
         d0 = ld.map.getDFromT(x0, y0);
         d1 = ld.map.getDFromT(x1, y1);
+
+        return r;
     };
 
     function getNextTile() {
@@ -92,11 +100,12 @@ ld.Person = function(x, y, xT, yT) {
             dir = ld.blocks.getBlockDir(x0, y0);
         }
         if (dir[0] === -1 && dir[1] === -1) {
-            ld.state.changeState('lose');
+            return true;
         } else {
             x1 = x0 + dir[0];
             y1 = y0 + dir[1];
         }
+        return false;
     }
 
     this.retreat = function() {

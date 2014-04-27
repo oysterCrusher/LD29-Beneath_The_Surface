@@ -2,7 +2,8 @@ ld.Level = function() {
 
     var levelNumber = 0,
         view = 'below',
-        nSteps = 0;
+        nSteps = 0,
+        hasLost = false;
 
     this.loadLevel = function(n) {
         levelNumber = n;
@@ -11,6 +12,19 @@ ld.Level = function() {
         ld.blocks.setLevel(n);
         ld.persons.setLevel(n);
         nSteps = 0;
+        hasLost = false;
+        view = 'below';
+        ld.input.clear();
+    };
+
+    this.loadNextLevel = function() {
+        if (levelNumber < ld.maps.length - 1) {
+            this.loadLevel(levelNumber + 1);
+        }
+    };
+
+    this.getLevelNumber = function() {
+        return levelNumber;
     };
 
     this.update = function() {
@@ -19,25 +33,29 @@ ld.Level = function() {
             toggleView();
         }
 
-        if (ld.input.wasPressed(ld.Keycodes.Left)) {
-            if (ld.player.move(-1, 0)) {
+        if (!hasLost) {
+            if (ld.input.wasPressed(ld.Keycodes.Left)) {
+                if (ld.player.move(-1, 0)) {
+                    advance();
+                }
+            } else if (ld.input.wasPressed(ld.Keycodes.Right)) {
+                if (ld.player.move(1, 0)) {
+                    advance();
+                }
+            } else if (ld.input.wasPressed(ld.Keycodes.Up)) {
+                if (ld.player.move(0, -1)) {
+                    advance();
+                }
+            } else if (ld.input.wasPressed(ld.Keycodes.Down)) {
+                if (ld.player.move(0, 1)) {
+                    advance();
+                }
+            } else if (ld.input.wasPressed(ld.Keycodes.W)) {
                 advance();
             }
-        } else if (ld.input.wasPressed(ld.Keycodes.Right)) {
-            if (ld.player.move(1, 0)) {
-                advance();
-            }
-        } else if (ld.input.wasPressed(ld.Keycodes.Up)) {
-            if (ld.player.move(0, -1)) {
-                advance();
-            }
-        } else if (ld.input.wasPressed(ld.Keycodes.Down)) {
-            if (ld.player.move(0, 1)) {
-                advance();
-            }
-        } else if (ld.input.wasPressed(ld.Keycodes.W)) {
-            advance();
-        } else if (ld.input.wasPressed(ld.Keycodes.U)) {
+        }
+
+        if (ld.input.wasPressed(ld.Keycodes.U)) {
             retreat();
         } else if (ld.input.wasPressed(ld.Keycodes.R)) {
             this.loadLevel(levelNumber);
@@ -53,8 +71,11 @@ ld.Level = function() {
     function advance() {
         ld.player.advance();
         ld.blocks.advance();
-        ld.persons.advance();
+        if (ld.persons.advance()) {
+            hasLost = true;
+        }
         nSteps++;
+        ld.input.clear();
     }
 
     function retreat() {
@@ -63,7 +84,9 @@ ld.Level = function() {
             ld.blocks.retreat();
             ld.player.retreat();
             nSteps--;
+            hasLost = false;
         }
+        ld.input.clear();
     }
 
     function toggleView() {
@@ -79,6 +102,10 @@ ld.Level = function() {
         ld.blocks.render(view);
         ld.player.render(view);
         ld.persons.render(view);
+
+        if (hasLost) {
+            ld.ctx.drawImage(ld.cache.sprites['lose'], 0, 0, 540, 54, 370, 50, 540, 54);
+        }
     };
 
     this.renderView = function(v) {

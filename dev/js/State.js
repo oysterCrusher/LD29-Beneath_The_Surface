@@ -15,7 +15,6 @@ ld.State = function() {
         states.mainMenu = new ld.MainMenu();
         states.game = new ld.Game();
         states.win = new ld.Win();
-        states.lose = new ld.Lose();
 
         currentState = states.loader;
         currentState.enter();

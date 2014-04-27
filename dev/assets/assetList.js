@@ -13,6 +13,7 @@ ld.assetList = {
         {name: 'level_numbers', url: 'assets/level_numbers.png'},
         {name: 'menu_arrow', url: 'assets/menu_arrow.png'},
         {name: 'title', url: 'assets/title.png'},
-        {name: 'help', url: 'assets/help.png'}
+        {name: 'help', url: 'assets/help.png'},
+        {name: 'complete', url: 'assets/complete.png'}
     ]
 };
