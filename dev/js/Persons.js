@@ -121,6 +121,10 @@ ld.Person = function(x, y, xT, yT) {
     };
 
     this.render = function(view) {
+        if (this.hasFinished) {
+            return;
+        }
+
         var dx = d0[0] + (subprogress / substeps) * (d1[0] - d0[0]),
             dy = d0[1] + (subprogress / substeps) * (d1[1] - d0[1]),
             gao = ld.ctx.globalAlpha;
