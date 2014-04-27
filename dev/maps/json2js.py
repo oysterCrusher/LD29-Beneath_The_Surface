@@ -1,11 +1,12 @@
 import json
 
-map01 = {'name': '01', 'players': [[0,5,19,5]] }
-map02 = {'name': '02', 'players': [[5,0,14,0]] }
-map03 = {'name': '03', 'players': [[19,6,0,6]] }
+map01 = {'name': '01', 'players': [[0,2,8,2]] }
+map02 = {'name': '02', 'players': [[4,0,6,8]] }
+map03 = {'name': '03', 'players': [[7,4,0,5]] }
 map04 = {'name': '04', 'players': [[10,4,0,4]] }
+map05 = {'name': '05', 'players': [[7,7,2,7]] }
 
-maps = [map01, map02, map03, map04]
+maps = [map01, map02, map03, map04, map05]
 
 output_file = '../js/maps.js'
 

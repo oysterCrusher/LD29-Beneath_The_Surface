@@ -20,19 +20,19 @@ ld.Level = function() {
         }
 
         if (view === 'below') {
-            if (ld.input.wasPressed(ld.Keycodes.A)) {
+            if (ld.input.wasPressed(ld.Keycodes.Left)) {
                 if (ld.player.move(-1, 0)) {
                     advance();
                 }
-            } else if (ld.input.wasPressed(ld.Keycodes.D)) {
+            } else if (ld.input.wasPressed(ld.Keycodes.Right)) {
                 if (ld.player.move(1, 0)) {
                     advance();
                 }
-            } else if (ld.input.wasPressed(ld.Keycodes.W)) {
+            } else if (ld.input.wasPressed(ld.Keycodes.Up)) {
                 if (ld.player.move(0, -1)) {
                     advance();
                 }
-            } else if (ld.input.wasPressed(ld.Keycodes.S)) {
+            } else if (ld.input.wasPressed(ld.Keycodes.Down)) {
                 if (ld.player.move(0, 1)) {
                     advance();
                 }
@@ -70,6 +70,8 @@ ld.Level = function() {
     }
 
     this.render = function() {
+        ld.ctx.fillStyle = '#000000';
+        ld.ctx.fillRect(0, 0, ld.canvas.width, ld.canvas.height);
         ld.map.render(view);
 //        ld.cracks.render(view);
         ld.blocks.render(view);

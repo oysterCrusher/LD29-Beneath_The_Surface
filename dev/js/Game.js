@@ -13,8 +13,8 @@ ld.Game = function() {
     };
 
     this.render = function() {
-        ld.ctx.fillStyle = '#000000';
-        ld.ctx.fillRect(0, 0, ld.canvas.width, ld.canvas.height);
+//        ld.ctx.fillStyle = '#000000';
+//        ld.ctx.fillRect(0, 0, ld.canvas.width, ld.canvas.height);
         ld.level.render();
     };
 
