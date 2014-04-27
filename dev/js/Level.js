@@ -15,7 +15,7 @@ ld.Level = function() {
 
     this.update = function() {
 
-        if (ld.input.wasPressed('space')) {
+        if (ld.input.wasPressed(ld.Keycodes.Space)) {
             toggleView();
         }
 
