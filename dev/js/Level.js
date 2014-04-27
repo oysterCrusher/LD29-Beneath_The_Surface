@@ -81,4 +81,13 @@ ld.Level = function() {
         ld.persons.render(view);
     };
 
+    this.renderView = function(v) {
+        ld.ctx.fillStyle = '#000000';
+        ld.ctx.fillRect(0, 0, ld.canvas.width, ld.canvas.height);
+        ld.map.render(v);
+        ld.blocks.render(v);
+        ld.player.render(v);
+        ld.persons.render(v);
+    }
+
 };
