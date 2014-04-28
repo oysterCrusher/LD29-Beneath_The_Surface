@@ -78,7 +78,6 @@ ld.Loader = function() {
                 ld.progress.push(0);
             }
         }
-        console.log(ld.progress);
     }
 
 };
