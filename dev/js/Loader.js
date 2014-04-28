@@ -27,6 +27,11 @@ ld.Loader = function() {
     };
 
     function setup() {
+        ld.hasLocalStorage = typeof(localStorage) !== "undefined";
+
+        ld.progress = [];
+        loadProgress();
+
         ld.map = new ld.Map();
         ld.persons = new ld.Persons();
         ld.player = new ld.Player();
@@ -55,6 +60,25 @@ ld.Loader = function() {
         if (nSpritesLoaded === nSpritesToLoad) {
             ld.state.changeState('mainMenu');
         }
+    }
+
+    function loadProgress() {
+        var p = 0;
+        for (var i = 0; i < ld.maps.length; i++) {
+            p = 0;
+
+            if (ld.hasLocalStorage) {
+                if (localStorage.getItem('ldp' + i.toString()) !== null) {
+                    p = localStorage.getItem('ldp' + i.toString());
+                    ld.progress.push(parseInt(p));
+                } else {
+                    ld.progress.push(0);
+                }
+            } else {
+                ld.progress.push(0);
+            }
+        }
+        console.log(ld.progress);
     }
 
 };

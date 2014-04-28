@@ -49,8 +49,8 @@ ld.MainMenu = function() {
         ld.ctx.drawImage(ld.cache.sprites['menu_arrow'], 0, 0, 60, 60, 680, 330, 60, 60);
 
         for (var i = 0; i < ld.maps.length; i++) {
-            ld.ctx.drawImage(ld.cache.sprites['level_button'], 0, 0, 340, 80, 760, 120 * i + 320 + levelButtonOffY, 340, 80);
-            ld.ctx.drawImage(ld.cache.sprites['level_numbers'], 0, 39 * i, 65, 39, 980, 120 * i + 340 + levelButtonOffY, 65, 39);
+            ld.ctx.drawImage(ld.cache.sprites['level_button'], 0, ld.progress[i] * 80, 340, 80, 760, 120 * i + 320 + levelButtonOffY, 340, 80);
+            ld.ctx.drawImage(ld.cache.sprites['level_numbers'], ld.progress[i] * 62, 39 * i, 62, 39, 980, 120 * i + 340 + levelButtonOffY, 62, 39);
         }
     };
 

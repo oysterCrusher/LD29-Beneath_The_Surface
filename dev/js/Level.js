@@ -64,6 +64,10 @@ ld.Level = function() {
         }
 
         if (ld.persons.hasFinished()) {
+            if (ld.hasLocalStorage) {
+                ld.progress[levelNumber] = 1;
+                localStorage.setItem('ldp' + levelNumber.toString(), '1');
+            }
             ld.state.changeState('win');
         }
     };
